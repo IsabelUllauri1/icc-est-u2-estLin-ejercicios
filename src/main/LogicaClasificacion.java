@@ -19,8 +19,17 @@ public class LogicaClasificacion {
     public String invertirCadena(String texto) {
         Stack<Character> stack = new Stack<>();
 
+        for(int i =0;i<texto.length();i++){
+            stack.push(texto.charAt(i));
+        }
 
-        return "";
+        StringBuilder stringBuilder= new StringBuilder(texto.length());
+        while(!stack.isEmpty()){
+            stringBuilder.append(stack.pop());
+        }
+
+
+        return stringBuilder.toString();
     }
 
     /**
@@ -87,9 +96,12 @@ public class LogicaClasificacion {
         while (!aux.isEmpty()) {
             pila.push(aux.pop());
         }
-        
+        List<Integer> lista = new ArrayList<>();
+        while (!pila.isEmpty()){
+            lista.add(pila.pop());
+        }
 
-        return new ArrayList<>(pila);
+        return lista;
     }
     
 
@@ -104,10 +116,21 @@ public class LogicaClasificacion {
      *         Salida: [2, 4, 6, 1, 3, 5]
      */
     public List<Integer> clasificarPorParidad(LinkedList<Integer> original) {
+        List<Integer> lista = new ArrayList<>();
 
-        return new ArrayList<>();
+        for(Integer n : original){
+            if (n%2==0) {
+                lista.add(n);                
+            }
+        }
+        for (Integer n : original){
+            if (n %2!=0){
+                lista.add(n);
+            }
+        }
+        return lista;
 
 
-        
+
     }
 }
