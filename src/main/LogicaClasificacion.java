@@ -75,20 +75,21 @@ public class LogicaClasificacion {
             int actual = pila.pop();//en la variable  actual saca el ultimo en entrar
 
             while(!aux.isEmpty()&& aux.peek()>actual){//mientras que el aux no este vacio
-                //y el de arriba del aux sea mayor al actual
+                                    //y el de arriba del aux sea mayor al actual
+
                 pila.push(aux.pop());//mete a la plia lo que saca y borra del aux
 
             }
             aux.push(actual);
 
         }
-        
+
         while (!aux.isEmpty()) {
             pila.push(aux.pop());
         }
         
 
-        return new ArrayList<>(aux);
+        return new ArrayList<>(pila);
     }
     
 
@@ -105,5 +106,8 @@ public class LogicaClasificacion {
     public List<Integer> clasificarPorParidad(LinkedList<Integer> original) {
 
         return new ArrayList<>();
+
+
+        
     }
 }
