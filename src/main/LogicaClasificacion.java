@@ -17,6 +17,9 @@ public class LogicaClasificacion {
      */
 
     public String invertirCadena(String texto) {
+        Stack<Character> stack = new Stack<>();
+
+
         return "";
     }
 
@@ -32,9 +35,31 @@ public class LogicaClasificacion {
      *         Salida: true
      */
     public boolean validarSimbolos(String expresion) {
-        return false;
-    }
+        Stack<Character> stack = new Stack<>();
+        for (char z: expresion.toCharArray()){
+            if(esApertura(z)){
+                stack.push(z);
+            }else{
+                if(stack.isEmpty()){
+                    return false;
+                }
 
+                char max= stack.pop(); 
+                if((z==')'&& max !='(')||
+                (z==']'&& max !='[')||  
+                (z=='}'&& max != '{')){
+
+                    return false;
+                }             
+            }
+        }
+        return stack.isEmpty();
+
+        
+    }
+    private boolean esApertura(char z){
+        return z=='('|| z =='['|| z=='{';
+    }
     /**
      * Ordena una pila de enteros en orden ascendente usando otra pila auxiliar.
      *
@@ -45,9 +70,27 @@ public class LogicaClasificacion {
      *         Salida: [1, 2, 3, 4]
      */
     public List<Integer> ordenarPila(Stack<Integer> pila) {
+        Stack<Integer> aux = new Stack<>();
+        while(!pila.isEmpty()){//mientras la pila no este vacia
+            int actual = pila.pop();//en la variable  actual saca el ultimo en entrar
 
-        return new ArrayList<>();
+            while(!aux.isEmpty()&& aux.peek()>actual){//mientras que el aux no este vacio
+                //y el de arriba del aux sea mayor al actual
+                pila.push(aux.pop());//mete a la plia lo que saca y borra del aux
+
+            }
+            aux.push(actual);
+
+        }
+        
+        while (!aux.isEmpty()) {
+            pila.push(aux.pop());
+        }
+        
+
+        return new ArrayList<>(aux);
     }
+    
 
     /**
      * Clasifica una lista de enteros separando pares e impares.
